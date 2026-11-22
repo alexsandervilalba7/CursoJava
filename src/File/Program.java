@@ -1,30 +1,24 @@
 package File;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.Buffer;
-import java.sql.SQLOutput;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Program {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
 
-        String path = "C:\\Windows\\Temp\\in.txt";
+        String[] Lines = new String[] {"Good Morning, Good Afternoon, Good Night"};
+        String path = "C:\\Windows\\Temp\\out.txt";
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-
-            String line = br.readLine();
-
-            while (line != null) {
-                System.out.println(line);
-                line = br.readLine();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            for (String line : Lines) {
+                bw.write(line);
+                bw.newLine();
             }
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            }
 
+        }
             }
         }
