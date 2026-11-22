@@ -1,28 +1,46 @@
 package File;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.nio.Buffer;
+import java.sql.SQLOutput;
 
 public class Program {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        File file = new File("C:\\Windows\\Temp\\in.txt");
-        Scanner sc = null;
+        String path = "C:\\Windows\\Temp\\ina.txt";
+        FileReader fr = null;
+        BufferedReader br = null;
         try {
-            sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
+            fr = new FileReader(path);
+            br = new BufferedReader(fr);
+
+            String line = br.readLine();
+
+            while (line != null) {
                 System.out.println(line);
+                line = br.readLine();
             }
+
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         } finally {
-            if (sc != null) {
-                sc.close();
+            try {
+                if (br != null) {
+                    br.close();
+                    if (fr != null) {
+                        fr.close();
+                    }
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+
+            }
+
             }
         }
-
     }
-}
