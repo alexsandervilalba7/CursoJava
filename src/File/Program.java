@@ -1,8 +1,6 @@
 package File;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Program {
@@ -10,24 +8,14 @@ public class Program {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter a folder path: ");
+        System.out.println("Enter a file path:  ");
         String strPath = sc.nextLine();
 
-        File Path = new File(strPath);
+        File path = new File(strPath);
+        System.out.println("File name: " + path.getName());
+        System.out.println("File parent: " + path.getParent());
+        System.out.println("File path: " + path.getPath());
 
-        File[] folders = Path.listFiles(File::isDirectory);
-        System.out.println("Folders: ");
-        for (File folder : folders) {
-            System.out.println(folder.getName());
-        }
-
-        File[] files = Path.listFiles(File::isFile);
-        System.out.println("Files: ");
-        for (File file : files) {
-            System.out.println(file);
-        }
-        boolean sucess = new File(strPath + "\\subdir").mkdir();
-        System.out.println("Directory created successfully: " + sucess);
 
             sc.close();
         }
